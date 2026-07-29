@@ -5,11 +5,21 @@
 
 # Googleニュース検索に使うキーワード
 # 各キーワードごとに「https://news.google.com/rss/search?q=キーワード」で検索します
+# region: "沖縄" または "全国"（地域タブでの絞り込みに使用）
+# category: "移住定住" "地域おこし" "その他" など（ジャンルタブでの絞り込みに使用）
 keywords:
-  - "沖縄 移住"
-  - "沖縄 地域おこし"
-  - "移住定住 全国"
-  - "地域おこし協力隊"
+  - keyword: "沖縄 移住"
+    region: "沖縄"
+    category: "移住定住"
+  - keyword: "沖縄 地域おこし"
+    region: "沖縄"
+    category: "地域おこし"
+  - keyword: "移住定住 全国"
+    region: "全国"
+    category: "移住定住"
+  - keyword: "地域おこし協力隊"
+    region: "全国"
+    category: "地域おこし"
 
 # Googleニュース検索の言語・地域設定
 google_news:

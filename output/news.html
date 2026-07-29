@@ -67,447 +67,633 @@
     font-size: 0.75rem;
     white-space: nowrap;
   }
+  .badge-region {
+    background: #e6e0f8;
+    color: #4b3593;
+  }
+  .badge-category {
+    background: #fde8d2;
+    color: #a45b12;
+  }
   .empty {
     text-align: center;
     color: #999;
     padding: 40px;
   }
+  .filters {
+    margin-bottom: 16px;
+  }
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .filter-btn {
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 16px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .filter-btn:hover {
+    border-color: #2f4858;
+  }
+  .filter-btn.active {
+    background: #2f4858;
+    border-color: #2f4858;
+    color: #fff;
+  }
 </style>
 </head>
 <body>
   <h1>沖縄・全国 移住定住ニュース</h1>
-  <div class="meta">生成日時: 2026-07-29 20:17:00 ／ 記事数: 60件</div>
+  <div class="meta">生成日時: 2026-07-29 20:38:57 ／ 記事数: 59件</div>
+  <div class="filters"><div class="filter-row" id="region-filters"><button type="button" class="filter-btn active" data-filter-type="region" data-filter-value="all">すべて</button><button type="button" class="filter-btn" data-filter-type="region" data-filter-value="沖縄">沖縄</button><button type="button" class="filter-btn" data-filter-type="region" data-filter-value="全国">全国</button></div><div class="filter-row" id="category-filters"><button type="button" class="filter-btn active" data-filter-type="category" data-filter-value="all">すべて</button><button type="button" class="filter-btn" data-filter-type="category" data-filter-value="移住定住">移住定住</button><button type="button" class="filter-btn" data-filter-type="category" data-filter-value="地域おこし">地域おこし</button><button type="button" class="filter-btn" data-filter-type="category" data-filter-value="その他">その他</button></div></div>
   <table>
     <thead>
       <tr>
         <th>日付</th>
         <th>タイトル</th>
         <th>出典</th>
+        <th>地域</th>
+        <th>ジャンル</th>
         <th>検索元</th>
       </tr>
     </thead>
     <tbody>
       
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-29 02:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9hX2xPeUNjTmNkenJsSzRtdUlqNV9fekYtSHhjanlrZXNsMHVHcmtLQWNxWUZzMG50ZXV3ZXgtWWFObS1rMnl4d25KanoxeV85bDNNajZtZU0tLVFxRTFvQXZEVjRJeWM?oc=5" target="_blank" rel="noopener noreferrer">敦賀のラーメン、屋台や店めぐり味わって 地域おこし協力隊員が企画 [福井県] - 朝日新聞</a></td>
           <td class="source">朝日新聞</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="移住定住">
           <td class="date">2026-07-29 00:45</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE02LXNfNXJiRmJDYUw4enVKc2QtYTJCNTNpdXAzcV9SclZSak9Ed0U4VHpwOERHQ05icDZOMFdoa1FXeEFTeTU0LWt0MjB5cFF0TXZqUlN4T0Z2REZWZUZhelJkNFdOZDBn?oc=5" target="_blank" rel="noopener noreferrer">移住につながった割合は全国参考値の約3倍 滋賀県多賀町「ふるさとワーキングホリデー」を7月29日から規模拡大して実施 - ニコニコニュース</a></td>
           <td class="source">ニコニコニュース</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">移住定住 全国</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-28 20:05</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTFB5eWY3b1V3YjNSbFd4VVNITlR6dGRSNTNqWGZST0ltYWR0Y2ZLYks2YjloRUxScGo2LU5LOThnUzVONDd2aHhxOWNra3JQdVlISm5EX3pvQTI5djVpcW14blMzRzY?oc=5" target="_blank" rel="noopener noreferrer">大野市地域おこし隊員に木村さん 空き家の利活用へ意欲：日刊県民福井Web - 中日新聞Web</a></td>
           <td class="source">中日新聞Web</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-28 07:37</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxQX2E5azJDR3NiZm5NbDREdWQtXzFOTlk5SWlZaVo2VHprVzlsMVU2RU1JeGtNVkgzRHVOaDM0RXJDWi10UHNlTVAwRHJYRlBxSHJxLVNXN0lnbGlqLU9PbHB4bldCWW1JQ1FTQ3NPU2Nsc0hqRU5pWV9DQVZsQUVDZ1ktaEc?oc=5" target="_blank" rel="noopener noreferrer">地域活性化起業人及び地域おこし協力隊員の活動内容について - 白浜町ホームページ</a></td>
           <td class="source">白浜町ホームページ</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-28 05:16</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFB5VW4ySzByRm1iellaNzcwLVhiRTFVdF8tdFFFS3BTbjVjR0ZrMHQ4WlpJdVFOUHpqVkZ5cWI5UEVtS0Z4UnAzYTVPNUZjdmxHZVd1SE1nUlkxdzFraGRYWGR0YkdsZG5w?oc=5" target="_blank" rel="noopener noreferrer">登別市地域おこし協力隊「ＩＴ化促進マネージャー」を募集します！（募集期間：令和８年７月２７日（月）～９月１１日（金）） - city.noboribetsu.lg.jp</a></td>
           <td class="source">city.noboribetsu.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-28 04:15</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE1vTi1laWROb3F2U3owVklyM0hCelNGYWZjaU9ERWlUbEp6WTJRZXNNUmtPck9pVHRRcWNSc2ZxMWJJaWdzaERlSE1wMkszNTljWEFyYzBZVGJzemM0cXdTQkdn?oc=5" target="_blank" rel="noopener noreferrer">元陸自音楽隊長で協力隊の小川さん、力強い指揮披露 能代市で吹奏楽コンサート - 秋田魁新報電子版</a></td>
           <td class="source">秋田魁新報電子版</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-28 03:55</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTFB4VTNXeGtJMWVocGxpQU91dEpkWXVHUnhBNEpBNDI3QmwxZG5NTDNfcmpMVHNQUWg0d3YzZW4yMXA1MHNFYThlTkQtZkFfM0VYUGo0dVozSF8wYUdLZk11T3BlaFBydUdp?oc=5" target="_blank" rel="noopener noreferrer">登別市地域おこし協力隊「観光まちづくりリーダー」を募集します！（募集期間：令和８年７月２７日（月）～９月１１日（金）） - city.noboribetsu.lg.jp</a></td>
           <td class="source">city.noboribetsu.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-27 20:01</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1aTVVIWGZmdWhYZ3JwdDl5TzFQLU0xVVBxYjJpcnpDemxybTdybE1sS0NxOEpvbDR0TzlJSU9kX1BvNUo2ZW1MbHQtOVVzVTBDdTZRbmdXRWdJb1V4aTFwSw?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊・松瀬川地区担当 吉田浩さん（47） - 愛媛新聞</a></td>
           <td class="source">愛媛新聞</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-27 20:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBJM2xuNUFYRW44YjJkOWUybExwejZYRFpTUk9Gc0lRRDdpU1FUQ3Q3UGpieVhwQjRzeTQ5V29MSjVHb2VVWVVMU2ZDeW90NWoteGM3cnhndE14VmVfeUE?oc=5" target="_blank" rel="noopener noreferrer">ヒージャー汁で選手激励 オキナワ移住地 第１地域で恒例「栄養会」 ボリビア - 琉球新報デジタル</a></td>
           <td class="source">琉球新報デジタル</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-27 19:05</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE1paTAxdXRBZThUVWhXTDJORzF4NWtjbEV2aWdaUWhfbHNKM2dJWmRrbjBJSGF3eHNLUThEZndnM2N4WHdKc0M4R0NWOEtpSDVmdjE0?oc=5" target="_blank" rel="noopener noreferrer">起業見据え基礎知識学ぶ 地域おこし協力隊勉強会【釧路市】 - 釧路新聞電子版</a></td>
           <td class="source">釧路新聞電子版</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-27 10:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE90WGhLZmxqSERrcUJRMG1YNEYtZjJ6RGJTUjNrRTRzcWZFWmVZMHBtQ1REa20zMmVHYXBOTGpKLTJvbGVvMndkNXQzTVlJY0FGMnFhb2l2X3FKUE1pV1N4aTVmdFotOFVwV0U1WUhoYmg4M0JSNFdQUzFsdFp6Nk0?oc=5" target="_blank" rel="noopener noreferrer">京丹後に「まるり商店」 元よろずの空き家活用、地域おこし協力隊が開業（みんなの経済新聞ネットワーク） - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-27 09:18</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1tRU41YkVUMEtUS0xZT01sZTFyTV9KRTR0X3JYZ2ZrNk9fTzh6R1lxTXJzdlo2SUU5dHE3OS00OFBiZHhyUUFQdDIxd1BqdGlaaV9PZmNJQndsZXlUN2VQbHRSN2wwemNFMGc?oc=5" target="_blank" rel="noopener noreferrer">８月18日（火）開催！北海道の暮らしと仕事セミナー【地域おこし協力隊編】 - PR TIMES</a></td>
           <td class="source">PR TIMES</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-27 04:03</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9tMHdIV3ZJQTZ2TEN2UXNkSWlwNHdFYjFXa0s3REZyVXZoYnZWYzZwaFZSbW5sT291MHR6MFdlcDVPMzdPTTd1NDRLVmNxcEJhNzJDOWZ2SEwzMlk?oc=5" target="_blank" rel="noopener noreferrer">【FIRE】実際に移住してみてよかったところ。北海道・大阪・福岡・沖縄。 #移住 Avellino (62ZXu9N41P) - Mshale</a></td>
           <td class="source">Mshale</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-27 01:30</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFB1WHhrLTItZmxEVGtvczV5MDBfQUdxUmdfOFFqME9Sc0w1eUxLY1Fpa2IzY2lHemY1aGFqY1kydEFQZGx1ODJUcWZFdEFDQ1NWRUE?oc=5" target="_blank" rel="noopener noreferrer">【移住定住プランナー】瀬戸内市地域おこし協力隊を募集しています！[岡山県瀬戸内市] - 山陽新聞</a></td>
           <td class="source">山陽新聞</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-26 19:39</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTFBVSWV2RWZEYjI3RlJDeEhuRVFZY3VQa2MwUUhmRm9EVU5uV0VKWjVfX1lPT3BaYzdvZHhjcTBha3JPd1FrMkdpZ2xmV1lSSm9kaXdn?oc=5" target="_blank" rel="noopener noreferrer">わだいことば釣り② 地域おこし協力隊 都市部の人材、活性化へ活動 - 釧路新聞電子版</a></td>
           <td class="source">釧路新聞電子版</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-26 10:22</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE5Sdk1fY3REdTN2Nkg1SGhtZlF5YVEyZDFDOG1zZkhBdUlzWkZWclI4SlFNNGFIYWJxWm1nTG5OVEtvazMwVks0WmVCZ1V1SjVyc3c?oc=5" target="_blank" rel="noopener noreferrer">【地域エネルギーコンサルタント】瀬戸内市地域おこし協力隊を募集しています！[岡山県瀬戸内市] - 山陽新聞</a></td>
           <td class="source">山陽新聞</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-26 10:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5xcFJtakp3YVBtLVJaYlo1NDM1TnFDQkZfMVRGRFA1ZHlZMVM2MndfcXR1N3JoTlRwVUZaeU94d29DS3ota2hGbmZlemM1UkhZYjhoM1BKcEh6bXJoa01TV3hWbjRIZG8?oc=5" target="_blank" rel="noopener noreferrer">東北町の特産品で「かるかん」 地域おこし協力隊・村居さん開発 - デーリー東北</a></td>
           <td class="source">デーリー東北</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
+          <td class="date">2026-07-26 04:31</td>
+          <td class="title"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE9RME1uRzdzOEVrVG9jallyMXFFYXlwQUtTYnhpRUF1YVlzSkFRUDQ4czdBVDVrVi1mSnJjX1psNTVMblhuVUxrUlJuVjZHSnVTQzVCWl9NbzBqLTA?oc=5" target="_blank" rel="noopener noreferrer">「B.LEAGUE×日本財団 まちづくり助成」 採択のお知らせ - 琉球ゴールデンキングス</a></td>
+          <td class="source">琉球ゴールデンキングス</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
+          <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
+        </tr>
+
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-26 02:06</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFByNndYMl91ZklOUU5zeS1IQnZhZnFHdFBCWVdYcWpsQ2NFU1ZNMHJFMFNwVm9QdWdudENVZmhBbkx5TU9fOTEtRDFrU3NjLVNDQ1pJY3B4MUdWRC1wa1l5MlJZdVNYR2c?oc=5" target="_blank" rel="noopener noreferrer">「三戸の魅力」多方面から発信 地域おこし協力隊の小林さん、ＳＮＳの３アカウント使い分け - デーリー東北</a></td>
           <td class="source">デーリー東北</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-25 09:20</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1qbTdObzlLZG1BRW83NHVIOUxLTHFZSi10OGFSRV95VFpWNDRHZlhHNWg5WWFYdkxRc2xVTWV0Z1ZEbFlNTG9DY2lEeVJGTlR1Q0p4b0VR?oc=5" target="_blank" rel="noopener noreferrer">「あんたたちが作ったと？」と評判 初収穫はプレゼントに 大町町の地域おこし協力隊 - 佐賀新聞</a></td>
           <td class="source">佐賀新聞</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-25 09:20</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE96eVZGeWRmak9pdlhDYVh2Ym5XUmdvcGl5V0w3MjQ5aVlodkRBeXU2UWJnY1pITklFaXoyVlpwNkxsdVB1bHF1a3lDSmxNamQ4MUdtNnpvcXZ5N2lrekVYc3k4UEk3LVNPd3gzZUJKN2Z1NVloTU4w?oc=5" target="_blank" rel="noopener noreferrer">「あんたたちが作ったと？」と評判 初収穫はプレゼントに 大町町の地域おこし協力隊（Saga Shimbun） - ｄメニューニュース</a></td>
           <td class="source">ｄメニューニュース</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-24 03:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9ka1hPNkZDQ3lIUkNucHFhWHVrajZLbmNMRk1qRGJlQnlUUjVVVEhmSFFEaThKaXFYLWR1N0UtRGdTRkpWT0lMamNIUjU3eTIyNzMxR09TeGE?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊 群馬県内の3人が任期延長を届け出 特例措置で最大5年に、担い手の定着につなげる - 上毛新聞電子版</a></td>
           <td class="source">上毛新聞電子版</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-24 02:46</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE55VEp1RWY2X1lNVmtPanRlWV9MaWYzSjdUdk0xTjNwekQ0eFBCZklIWVp1Q3k1V05JRXNtWGZYMUlZNnYwWFFMeFk5ck5MZlo5Um5WTGZycEQ?oc=5" target="_blank" rel="noopener noreferrer">岩手「地域おこし協力隊」昨年度隊員数３４８人 過去最多更新 - NHKニュース</a></td>
           <td class="source">NHKニュース</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-24 02:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTFB5VFcxdU1LYlRwWUlROXAzRlpDLU92WFdaWXVHUW9uemE4WnFWc0luLUlnVlloRGdGOTZBNEJJeUxMM3BwN2pZcktWMmxQY2xsSmlNSEN1WFpHUWZYY0swbGJQcDBXY1dRWUE?oc=5" target="_blank" rel="noopener noreferrer">【磐田に新たな交流の拠点が誕生！】まちが動き出すきっかけが生まれる場所「IWATA BASE」グランドオープン - PR TIMES</a></td>
           <td class="source">PR TIMES</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-23 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE1Wd29nRldpV2w1QmpKMWdodWhvWF95MzZGME96aThIZjFtNzE1cWk1aXNxNEhXNjdha05LcUJJWEYxTmhPVUJFYmh6dEJneDNpQTM4cDBteURLT2dLUjJZaWl5QjVvelhyLW5ScVdvMmw0blpqYjIxVk1zcnc3QQ?oc=5" target="_blank" rel="noopener noreferrer">令和7年度地域おこし協力隊実績報告について - town.hokkaido-mori.lg.jp</a></td>
           <td class="source">town.hokkaido-mori.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-23 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTFByUVMyYXA3QWsxQXNvQnpWTmkxTm9vMmpyWjB0a3N5Y044ejRfNjNSUjlvLU1KYUlNWXFuTGFSRXVzc290TmxEUG5fLUZtcWtoOV9Ebmo1Vm55cnlFdTVyZzlyN3VJc1ZoQmh3M1lOdDd0X1c2YVBRTUE4dXpSdw?oc=5" target="_blank" rel="noopener noreferrer">令和7年度地域おこし協力隊インターンの成果について - town.hokkaido-mori.lg.jp</a></td>
           <td class="source">town.hokkaido-mori.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-23 06:19</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE9INDM5WXJGQWFTY3pfUHlGeWxic1BzYTlnSVNWNUF5TTVVR2htbmtfNnh3WmQ4TExNb1RKUkx6bkV6S0VULUxtTkpPcDAxY2JVYTVCb3JGQ2JOeVdFN2tFX2E2bHdodlpWNXNLaw?oc=5" target="_blank" rel="noopener noreferrer">四万十町地域おこし協力隊について - town.shimanto.lg.jp</a></td>
           <td class="source">town.shimanto.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-21 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5JYWRVVWRMeXM4NVQzYjB0TmZRSUJRMmt5VW1HcGtrbHFaSl9BNVNpcS12SnBoUFN3cU1XOU1Nd3cwcjBybnJsYUlMaXgxTXR3cU5HTmpxWlgtcnkwNXJVUXZhdGVhNzQ?oc=5" target="_blank" rel="noopener noreferrer">42歳・山田孝之、“沖縄移住”のきっかけを明かす 中3で鹿児島から上京するも「東京に家を建てるとか家を買うとかの選択肢は、今まで一度も1％もなかった」：山陽新聞デジタル｜さんデジ - 山陽新聞</a></td>
           <td class="source">山陽新聞</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-21 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE13VXFDdnBEcHVrR0dHQjVGU0lzV0dhemR1U3NQc0JiUWN2ZXpLZ1FfbnprMVQ3akhlRzJRZkUwSi1nZGt2Vjg2R19QeExSNXJSWmhpdzZpQWZISHlfMW5GT0hUXzBrN2k2N1E?oc=5" target="_blank" rel="noopener noreferrer">【千葉県香取市】地域おこし協力隊を2分野で同時募集！「関係人口創出」と「移住・定住」で地域の未来を担う人材を募集 - PR TIMES</a></td>
           <td class="source">PR TIMES</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-18 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBUOVNyQ3lhaVd5SWc0VW1Yell6ME1XM0Z6Vl9YU1BoejRPYVNZWkVMS1BZTEFOMFZhd080TXRWb0NaRUNVYkt4cFdPWFpya3lfR0F3NndISVdOUzdpOVE?oc=5" target="_blank" rel="noopener noreferrer">伊江島の魅力発信誓う 地域おこし協力隊に都留さん - 琉球新報デジタル</a></td>
           <td class="source">琉球新報デジタル</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-17 08:09</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1mMHRVaVNvSndTeVA2X2o2RW1WVGpKN2hWbUg0cW1ra0V6M1BVR3pUWWxveWtuazN5YlY1QVhPRlNYamhVazNmdHQ0NkxoWlBLRm50ckZlYjRtUQ?oc=5" target="_blank" rel="noopener noreferrer">令和８年度中津市地域おこし協力隊「合同活動報告会」を開催します〜中津の未来を、共に創る。〜 - city-nakatsu.jp</a></td>
           <td class="source">city-nakatsu.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-17 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE9ITXNkeThzNkQxVHlieW1hX2ZfTVV2STN0Nll0YkgxTHAxMWgyYUd6aFVXVEd1UFBpVXNsbzV2TDZYQU9FQzhuS0xlckZDeldDVjJlRFh3Rm1IUQ?oc=5" target="_blank" rel="noopener noreferrer">新たな地域おこし協力隊（農業）が着任しました - city-nakatsu.jp</a></td>
           <td class="source">city-nakatsu.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-17 02:37</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9CTk9aRlA0VlFaZEhObTRyb2REVDJiLUhUZjk4Mkt3RDF2eGVLOHJzVGdqemgxSW5DcVFUTTNnWk5ibDV0c1JhREM2ZDh4TVUxMWdVdjNGRFB5WTUwazR4Y2pVYVJOU3Rt?oc=5" target="_blank" rel="noopener noreferrer">函館市地域おこし協力隊（二拠点居住推進コーディネーター）を募集します［令和8年10月採用予定］ - city.hakodate.hokkaido.jp</a></td>
           <td class="source">city.hakodate.hokkaido.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-16 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFA4SzJONVdGdjc2R0dHLWJUd25iMTBMWGxNbmdncGVxQ2p6MnFZSXRHYXVEZzU3MENhWFNiUzhuUDlWUDY1a3JEdGpyakZYc25FMERQcW1GT3JNQ2VMRUE?oc=5" target="_blank" rel="noopener noreferrer">「B.LEAGUE×日本財団 まちづくり助成」採択のお知らせ - 沖縄タイムス社</a></td>
           <td class="source">沖縄タイムス社</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
-          <td class="date">2026-07-16 07:00</td>
-          <td class="title"><a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBOWXlCWDlZc1hkRUVFSHlfY281dFpXYlVYUEV5MFRCWXpVT2JpY3NrX004YVdYTTFHRGlkQU5IWHljUGowZmktazlsWThwcjJLTjJwd3NBcEJEdG8?oc=5" target="_blank" rel="noopener noreferrer">「B.LEAGUE×日本財団 まちづくり助成」 採択のお知らせ - 琉球ゴールデンキングス</a></td>
-          <td class="source">琉球ゴールデンキングス</td>
-          <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
-        </tr>
-
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-15 20:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5DWDlFZFIwQ1hXdGliV2FtcHpmVW1BY05UOWszUzA2bl94blY4aGFEVkFpaTV0WkJSVzdSWTNBalFfOFE1eUQ1NmtNOEtTUlZNdVBUVWxJbkxmWnZhZ2VRWA?oc=5" target="_blank" rel="noopener noreferrer">首里城周辺の渋滞対策を検討 まちづくり推進協議会 沖縄 - 琉球新報デジタル</a></td>
           <td class="source">琉球新報デジタル</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-15 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9oVWEyMlBRRGxUUjRWZVplZlpjX2loY1NFeUttZC1lU3JnWGYzSmdyV29mS2NrOHJTaWpqZGVRQ0xwaEpXdFBveWN1aUw3YmVZZW16cGlnN2Y1dFRJUXIyOTZBd2g5LVU3TGs5RlBZTW1uMUw0RUxrejdQcGw4YlU?oc=5" target="_blank" rel="noopener noreferrer">離婚→沖縄移住の女優「愛してるよーーー」ひとあし早い55歳の祝福に笑顔 「お若い」「いつまでも変わらず」の声 - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-14 08:52</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE9SSGwxSnZZT01FTThPSHhKM1N1Z2lRMUZMSkJXN21KNC01WktUM2pvaWd6SmctaWwtbkw4a19WZTVKMmo0SDN1a3pvSkoyaE91bWJabUJDeVlXZEkzc05YY2ZYY1Vvd1BxblB6NGt3?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊のリアルな活動を調査せよ！ - pref.kagoshima.jp</a></td>
           <td class="source">pref.kagoshima.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-13 00:36</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxQVEN6TkdDdlRMOFZCcjRiV2x1NEw5TEpXWUVVeF9QR091c1NuRDl4MTR1MHlPNnZPc0FtaFBkMTQzX2N6ZXVaaEQ3TC1KcXJ3ODdoV1NtUDYtc0xQbmVRV1VzT3NYYnRaSTlseXZWaFgyX1EySTBBYjY1eUtUNlhRcV9BbEZLbDd0ckF5a0U5QjNKYUJJVzVCd2UyaHVLY09TSENBOHBB?oc=5" target="_blank" rel="noopener noreferrer">御前崎市地域おこし協力隊員募集！【フィルムコミッション】／御前崎市公式ホームページ - city.omaezaki.shizuoka.jp</a></td>
           <td class="source">city.omaezaki.shizuoka.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-12 21:17</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1EWnVHaVl5eHplak1HYWZrdVhPeDJQM0FFTkozV24zeFBZb1lSX1pZTlZpY1A4WnJnZkNDWVNKWk9hYjBDWklhaGRORG5LOXNCbzJEYkV5ZnZqX0hQNmd5M29EZXA3M2xwZ0pxZ3hYcw?oc=5" target="_blank" rel="noopener noreferrer">【名寄市】スポーツの力で名寄の未来をつくる！地域おこし協力隊募集！ | 北海道の人、暮らし - 北海道の人、暮らし、仕事。 くらしごと</a></td>
           <td class="source">北海道の人、暮らし、仕事。 くらしごと</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-11 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE9SRVdhQWdUTkF2ODRqMDlyQzU3cUk3RmJJQ3pyN3dGOWZHdGhNdnRvN2k5cXZCOVlPa043VlZvOUYzTTB5VzVMUzRqTlZ1SEZ3TDZrRUZwbElqVlAzQzA1QjlkNEpCSk81cDJocVdLNk1yMGVGT2JuaFhuQVlicTg?oc=5" target="_blank" rel="noopener noreferrer">【実録】沖縄で“地域おこし協力隊”になったら「手取り14万」に…都市ガスが使えず、ガソリン代もかかる―それでも満員電車とは無縁、極上の夕陽に癒やされる「生活費10万」の暮らしが最高な理由（ファイナンシャルフィールド） - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-11 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxQZlNPQ1VwRGU2UHRQbW0xUXRPNHktbXRacktobFZKaThBT3U4YTA1bFZkMGZpVS1TQXd6V1l5NnRjSG5yUndYM3ExX1lWakZuc0oxMGp6VFJYSjNXVlJJZFJLXzdyY3hMdW5ockxTcHpzLWZtV2RnNUFmcDUyVUViUE95N3JMS1E4aVZzMFln?oc=5" target="_blank" rel="noopener noreferrer">【実録】沖縄で“地域おこし協力隊”になったら「手取り14万」に…都市ガスが使えず、ガソリン代もかかる―それでも満員電車とは無縁、極上の夕陽に癒やされる「生活費10万」の暮らしが最高な理由 (ファイナンシャルフィールド) - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-11 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFB0aTdkOEtyT1JUQ2pERXRRbGtTMFRzQ1VqZVRpTFJjdjdIOE92UXlWcEtlMDNiOVd3SFltTWl2RnNESW85QUltUXozc1FhOEN5d3I2S1NjbnRSUFNjc0E?oc=5" target="_blank" rel="noopener noreferrer">手取り14万円の沖縄生活が「最高」地域おこし協力隊になった結果 (2026年7月11日掲載) - ライブドアニュース</a></td>
           <td class="source">ライブドアニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="地域おこし">
           <td class="date">2026-07-11 05:30</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5LMWlraFJPZ3k4ZktLV0JSYi15bzk1UjhzUmVpWTBzSFE0WWE0eHJHRFZZR2FMM0JIYVZPa010aGNpLW9fakRNOG5QM2d2d0NvZ3hPSzFhekFZYlotdUJ3?oc=5" target="_blank" rel="noopener noreferrer">手取り14万円の沖縄生活が「最高」地域おこし協力隊になった結果 - ライブドアニュース</a></td>
           <td class="source">ライブドアニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">沖縄 地域おこし</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-10 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMihwFBVV95cUxNTi1nMi1NTi1IbXA5QlM3N3Y2cjg4SW5maHBjRG5aY3luNUVaWTdrZkw4NkMydXlCekhNVUdfdnZXUGVSa1dsSzAxcXdnc1VaVkJrVHdhdTVXSE05T00xV05nMkJsUnNxN0x5NEVsS2QtR0E5S1FVZElELThiZWRzenRjeXJiQUU?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊を募集します 【令和8年11月委嘱】 - city.omihachiman.lg.jp</a></td>
           <td class="source">city.omihachiman.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-09 23:46</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMigAFBVV95cUxQdVJYWFlWX2dNZXctdWR2RUF0aGRiWm9ObGZuOWNGRkY0YnB6TW9rRTMwVGl4dHpnN1ViQ0IzMzRkZUdsRmdVT0pDUGQ3ZjFmVDJOMzNha2M0NzFySmFOYy1FYkpmZDJqNWNMVEx3MEhCb21BYkpTTUVkT3pOS1B1Zg?oc=5" target="_blank" rel="noopener noreferrer">【公募型プロポーザル】令和8年度地域おこし協力隊募集業務委託 - city.fukuroi.shizuoka.jp</a></td>
           <td class="source">city.fukuroi.shizuoka.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-09 17:11</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE5xOFlWMnI2V0lteHZNbHN1TFNYRDBPNEtHd0hGTmEzajdVX1VFUnpOY0xWSXhYTEltVFEzZ1pCeTBxZWU3LTVXX1UtQXVsTWo2SzIwWg?oc=5" target="_blank" rel="noopener noreferrer">オキナワと沖縄をつなぐ絆 オキナワ移住地から大豆を初輸出 - QAB 琉球朝日放送</a></td>
           <td class="source">QAB 琉球朝日放送</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-09 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE9LUWlqbHJFZUNIbmRyTHpfTU92NXdvZ29yQWV1dmZrWEhSeUx4aE83WjVnWDh3VkxGX0ZKRlJEdFJfUGE0NmpGaDRhenBQZ2Npb0ZDZXZVRjFRV29vc0s3YjdB?oc=5" target="_blank" rel="noopener noreferrer">７年ぶりに妊娠した元アイドル「沖縄移住」ふっくらお腹の水着姿！「離婚し、再婚しました」の報告から１年の大川藍 - スポーツ報知</a></td>
           <td class="source">スポーツ報知</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
-          <td class="date">2026-07-09 02:37</td>
-          <td class="title"><a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE1BTFo5WnRRajhZOHpXdWVQMEl2NW8tdkd6bzhCRUd6aDhCOXA0eGhRbmpNcTJ6UG55NXlwcE1MaG94aVNqZXp0bE5wZEtyVURlY2ktdjZta05GcW1zQmN2YmwwcDdiSkZuOGxqWXVsdw?oc=5" target="_blank" rel="noopener noreferrer">【旭川市】北海道第二の都市「旭川」で地域おこし協力隊になりませんか！ | 北海道の人、暮らし - 北海道の人、暮らし、仕事。 くらしごと</a></td>
-          <td class="source">北海道の人、暮らし、仕事。 くらしごと</td>
-          <td class="tag"><span class="badge">地域おこし協力隊</span></td>
-        </tr>
-
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-03 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5QdmZWQk56MmExVDdvc0FMLVVRMFh2V19zUm50MUJiQlhnek5URzZmRzhyb3lyWVltQWlKUXNON2hrSDFOdWlNRUVEX1JPVHI5dkFtNHpQTllib0l1Tl9B?oc=5" target="_blank" rel="noopener noreferrer">空き家予防対策のミッション型地域おこし協力隊 鍛冶野達也さんが新たに着任 - 十日町タウン情報</a></td>
           <td class="source">十日町タウン情報</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-03 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxNSFFDQ1pSdmJoeFQ1T1l0TkhrQzN4ZmpRUmlvazJiamotaWhMd3E3NDlkdS1wckRrMFc3ZjhLOHpKZXRwWDdXdWV6Q1F0V0RZQ2pHUXVnQmZyVTUyc2cydURCRmo3clZMNkVrY1k4RVhYaFMzSnNlek1Tc2wydnctUGo4dENVaWdh?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊を募集します - town.taki.mie.jp</a></td>
           <td class="source">town.taki.mie.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-03 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTE5iTmdDMWQzNThQQ081Z0Zmc0tKNnhMNmF0ZzJTMkhCamJaRnRaMXZNLVpweHVLTXJ5aFBZemVEWGtmMW9HY05kRVFLNThsNE9BSmJuSVVXdjBMWHctOW9sNFZCbXc1S3VnR1JQWnpKV1NTNzhQUlJqLVVHOUFOZWs?oc=5" target="_blank" rel="noopener noreferrer">地域課題の改善に 地域おこし協力隊活動報告会 任地での取り組み紹介／岡山・津山市（津山朝日新聞） - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-03 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9VUGdJdFhuVTF4NTRpWHNPMkx5bi12Q2wyYkdOd3RHUUE1NFBjX0YxQV9vNC11NzgyX0ZpbnJjZmtUdnQwSUFqazd3QVRaTTI3N3VSNEw0TjcxU1RTMk9Bb0lMVXFQcDEzbkE?oc=5" target="_blank" rel="noopener noreferrer">＜８月２日（日）開催！＞十勝で地域おこし協力隊になりませんか？「北海道十勝 地域おこし協力隊募集オンライン相談会」を開催します - PR TIMES</a></td>
           <td class="source">PR TIMES</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-01 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMif0FVX3lxTFBaSk81X1dIS3RCVXo0aXdUUFJ1Q0Y1Ni1kbllKcWdrWHFHU3FzbHEtQ09EdWRoanU2Nmx3TEN0dkxDSmF4SWM0TlhSY01jSXk1emI2QVBYMWVtdk9CSHNRSklzTUhYajVFellPR3BrbGhqQm1wSDVHWDdsWWJINDg?oc=5" target="_blank" rel="noopener noreferrer">定年後は「沖縄でスローライフ」と移住した夫婦。しかし“車社会”と“台風対策”で想定外の出費が連発し「毎月赤字」に!? 憧れの南国暮らしに潜む「見えない維持費」とは？（ファイナンシャルフィールド） - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-01 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMijgFBVV95cUxQemtjclBhNHJCcGM4MnhzdGhGS01MSjQzMnhtV190dlpjM1BtYWIzM2RGX241TXBfU3N0NFVfMFBPck83b1Nlb3BYLTZNRkltbTBvMjdHXzFyUlhpQlV1MlpCeW1rUU9CamFmaWpPaGlYVV9LQ2M3emU3ajRCN29SZ0ZCeUNYVFRidGlKcVRn?oc=5" target="_blank" rel="noopener noreferrer">定年後は「沖縄でスローライフ」と移住した夫婦。しかし“車社会”と“台風対策”で想定外の出費が連発し「毎月赤字」に!? 憧れの南国暮らしに潜む「見えない維持費」とは？ (ファイナンシャルフィールド) - Yahoo!ニュース</a></td>
           <td class="source">Yahoo!ニュース</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="沖縄" data-category="移住定住">
           <td class="date">2026-07-01 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBsZklYUHVxaFRMNldIbWU2dXFJUlZGajQ4SEs1elVHUmlSS01CdjhkNHpDV0M1bElvUDFHaVJGNDNrWm0tUnZudEdrRHQzdmlTa240Q29TZjd6eWhNc1E?oc=5" target="_blank" rel="noopener noreferrer">移住半年の夫婦、島あげて結婚式 ファーストバイトはアンダギー うるま・津堅 沖縄 - 琉球新報デジタル</a></td>
           <td class="source">琉球新報デジタル</td>
+          <td class="region"><span class="badge badge-region">沖縄</span></td>
+          <td class="category"><span class="badge badge-category">移住定住</span></td>
           <td class="tag"><span class="badge">沖縄 移住</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-01 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE43X215cVZBcTIzcmtFQWNmbGVXZnlsR1l2S3Vqd2JpNjNGczVqZl9GUnJpUzdpQjVOWnlxbTNqWTctSEFscmVxSE1YaC1ONURPNkRMU0lsaUZrMlowSHNMNE9B?oc=5" target="_blank" rel="noopener noreferrer">九重町地域おこし協力隊を募集します! 【畜産ヘルパー】 - town.kokonoe.oita.jp</a></td>
           <td class="source">town.kokonoe.oita.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-07-01 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxNYkxHQ3lDZEs3ZDJCZXNBbU1rQlliNlFDYTUzOUVqdW9iSUNGN3BFUzNsTWpaV0VxUDRkMmJTMkhzNjBtY1A3YXhXS2lHdkJMbWJGWnpYdzZYeGxrSkNQNndlR1JtQ1BqT2VzaXdmWlhPVXNlTThLRGVNdG1aWWl1c3hwR2dYSFlSSWVzN2k5RW93UjBpR19WSFRqQQ?oc=5" target="_blank" rel="noopener noreferrer">【8/28〆】地域おこし協力隊（「まちづくりプロデューサー」）兼（仮称）立山町まちづくり会社 ゼネラルマネージャー募集 - town.tateyama.toyama.jp</a></td>
           <td class="source">town.tateyama.toyama.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-06-30 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE1IaXkzN0NJX210WGJuZzBKQ2JSYlJKY3F4MVNRQVVzQVh3YzV4R01uMUZsQjlKcklKMHlLSmhUNkFZUXE5WTFLN09LWVZUN0VVYUFHVU5iQXJuc2p5Q3NRNHRfNkdOUDZmeS00aDl5Wm5vd0ExUmdGQWRFN3k?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊 [右腕型] 隊員募集 (採用・広報コーディネーター) - city.ishinomaki.lg.jp</a></td>
           <td class="source">city.ishinomaki.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-06-30 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE56WWU5dDJfRENpX2swUmlwcnhHQ29qX1lGdl82amVYcFJYLXFURnB2SXlIbmY0Nk9icXVaT2ZDaDczTjBUNzhYckpHS0hQU0xYZWNEdnZJVTNPX3RFM3hEa2MxZnhSMWZxeGdoX083T2JURTVBWVMzWFRWcDc?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊[右腕型]隊員募集（地域に新しい価値を生み出す編集者）） - city.ishinomaki.lg.jp</a></td>
           <td class="source">city.ishinomaki.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
 
-        <tr>
+        <tr data-region="全国" data-category="地域おこし">
           <td class="date">2026-06-30 07:00</td>
           <td class="title"><a href="https://news.google.com/rss/articles/CBMifEFVX3lxTE5GdzBSbVVZcVhnemxrOEtiems4ZFRtdnFPVUhxU3UwVkdTSG43MjNiamtIZU9NNW5VUTRGVGR1VXlfblAxSDVWYlVYOUNGMVhmdDVxWUxkV19jRGV0LUhUNGJPVjdTd1FRQzhyTThBYlNjLUZ1RTNJNm9aWE8?oc=5" target="_blank" rel="noopener noreferrer">地域おこし協力隊[右腕型]隊員募集（地域産品ブランディング・ プロジェクト） - city.ishinomaki.lg.jp</a></td>
           <td class="source">city.ishinomaki.lg.jp</td>
+          <td class="region"><span class="badge badge-region">全国</span></td>
+          <td class="category"><span class="badge badge-category">地域おこし</span></td>
           <td class="tag"><span class="badge">地域おこし協力隊</span></td>
         </tr>
+      <tr id="no-match-row" class="no-match-row" style="display:none;"><td colspan="6" class="empty">条件に一致する記事がありません</td></tr>
     </tbody>
   </table>
+  <script>
+    (function () {
+      var state = { region: "all", category: "all" };
+      var rows = Array.prototype.slice.call(
+        document.querySelectorAll("table tbody tr[data-region]")
+      );
+      var noMatchRow = document.getElementById("no-match-row");
+
+      function applyFilters() {
+        var visibleCount = 0;
+        rows.forEach(function (row) {
+          var matchesRegion = state.region === "all" || row.dataset.region === state.region;
+          var matchesCategory = state.category === "all" || row.dataset.category === state.category;
+          var visible = matchesRegion && matchesCategory;
+          row.style.display = visible ? "" : "none";
+          if (visible) visibleCount++;
+        });
+        if (noMatchRow) {
+          noMatchRow.style.display = visibleCount === 0 ? "" : "none";
+        }
+      }
+
+      document.querySelectorAll(".filter-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var filterType = btn.dataset.filterType;
+          var filterValue = btn.dataset.filterValue;
+          state[filterType] = filterValue;
+          document
+            .querySelectorAll('.filter-btn[data-filter-type="' + filterType + '"]')
+            .forEach(function (b) {
+              b.classList.toggle("active", b === btn);
+            });
+          applyFilters();
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

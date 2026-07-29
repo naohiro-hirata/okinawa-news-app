@@ -26,6 +26,10 @@ def load_config():
         return yaml.safe_load(f)
 
 
+DEFAULT_REGION = "全国"
+DEFAULT_CATEGORY = "その他"
+
+
 def build_google_news_url(keyword, google_news_cfg):
     query = urllib.parse.quote(keyword)
     hl = google_news_cfg.get("hl", "ja")
@@ -61,19 +65,22 @@ def parse_entry_date(entry):
 def match_keyword(text, keywords):
     """textが keywords のいずれかに一致するか判定する。
     各キーワードはスペース区切りのAND条件として扱う（Googleニュース検索と同じ考え方）。
-    一致した場合は最初に一致したキーワードを返し、一致しなければNoneを返す。
+    一致した場合は最初に一致したキーワード設定（dict）を返し、一致しなければNoneを返す。
     """
-    for keyword in keywords:
-        terms = keyword.split()
+    for keyword_cfg in keywords:
+        terms = keyword_cfg["keyword"].split()
         if terms and all(term in text for term in terms):
-            return keyword
+            return keyword_cfg
     return None
 
 
-def fetch_feed(url, source_name, tag, keyword_filter=None):
+def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None):
     """RSS/Atomフィードを取得して記事リストを返す。
-    keyword_filter にキーワードリストを渡すと、タイトル・概要が
-    いずれかのキーワードに一致する記事だけを残す。
+    keyword_filter にキーワード設定リストを渡すと、タイトル・概要が
+    いずれかのキーワードに一致する記事だけを残し、一致したキーワードの
+    region/categoryを記事に紐づける。
+    keyword_cfg を渡した場合（Googleニュース検索時）は、そのキーワードの
+    region/categoryをそのまま全記事に紐づける。
     """
     articles = []
     parsed = feedparser.parse(url)
@@ -83,13 +90,12 @@ def fetch_feed(url, source_name, tag, keyword_filter=None):
         if not title or not link:
             continue
 
-        matched_tag = tag
+        matched_cfg = keyword_cfg
         if keyword_filter is not None:
             summary = entry.get("summary", "") or ""
-            matched = match_keyword(f"{title} {summary}", keyword_filter)
-            if matched is None:
+            matched_cfg = match_keyword(f"{title} {summary}", keyword_filter)
+            if matched_cfg is None:
                 continue
-            matched_tag = matched
 
         pub_date = parse_entry_date(entry)
 
@@ -102,7 +108,9 @@ def fetch_feed(url, source_name, tag, keyword_filter=None):
             "link": link,
             "source": display_source,
             "date": pub_date,
-            "tag": matched_tag,
+            "tag": matched_cfg["keyword"] if matched_cfg else source_name,
+            "region": (matched_cfg or {}).get("region") or DEFAULT_REGION,
+            "category": (matched_cfg or {}).get("category") or DEFAULT_CATEGORY,
         })
     return articles
 
@@ -112,10 +120,11 @@ def collect_articles(config):
 
     keywords = config.get("keywords", [])
     google_news_cfg = config.get("google_news", {})
-    for keyword in keywords:
+    for keyword_cfg in keywords:
+        keyword = keyword_cfg["keyword"]
         url = build_google_news_url(keyword, google_news_cfg)
         print(f"[Googleニュース検索] {keyword} を取得中...")
-        articles = fetch_feed(url, "Googleニュース", keyword)
+        articles = fetch_feed(url, "Googleニュース", keyword_cfg=keyword_cfg)
         print(f"  -> {len(articles)} 件取得")
         all_articles.extend(articles)
 
@@ -126,7 +135,7 @@ def collect_articles(config):
         if not url:
             continue
         print(f"[RSS] {name} を取得中...")
-        articles = fetch_feed(url, name, "RSS購読", keyword_filter=keywords)
+        articles = fetch_feed(url, name, keyword_filter=keywords)
         print(f"  -> {len(articles)} 件取得（キーワード一致分のみ）")
         all_articles.extend(articles)
 
@@ -168,6 +177,28 @@ def sort_articles(articles):
     )
 
 
+REGION_TABS = ["すべて", "沖縄", "全国"]
+CATEGORY_TABS = ["すべて", "移住定住", "地域おこし", "その他"]
+
+
+def render_filter_tabs():
+    def render_row(row_id, filter_type, values):
+        buttons = []
+        for i, value in enumerate(values):
+            filter_value = "all" if value == "すべて" else value
+            active_class = " active" if i == 0 else ""
+            buttons.append(
+                f'<button type="button" class="filter-btn{active_class}" '
+                f'data-filter-type="{filter_type}" data-filter-value="{html.escape(filter_value)}">'
+                f'{html.escape(value)}</button>'
+            )
+        return f'<div class="filter-row" id="{row_id}">{"".join(buttons)}</div>'
+
+    region_row = render_row("region-filters", "region", REGION_TABS)
+    category_row = render_row("category-filters", "category", CATEGORY_TABS)
+    return f'<div class="filters">{region_row}{category_row}</div>'
+
+
 def render_html(articles, generated_at):
     rows = []
     for article in articles:
@@ -176,15 +207,27 @@ def render_html(articles, generated_at):
         link = html.escape(article["link"])
         source = html.escape(article["source"])
         tag = html.escape(article["tag"])
+        region = html.escape(article["region"])
+        category = html.escape(article["category"])
         rows.append(f"""
-        <tr>
+        <tr data-region="{region}" data-category="{category}">
           <td class="date">{date_str}</td>
           <td class="title"><a href="{link}" target="_blank" rel="noopener noreferrer">{title}</a></td>
           <td class="source">{source}</td>
+          <td class="region"><span class="badge badge-region">{region}</span></td>
+          <td class="category"><span class="badge badge-category">{category}</span></td>
           <td class="tag"><span class="badge">{tag}</span></td>
         </tr>""")
 
-    rows_html = "\n".join(rows) if rows else '<tr><td colspan="4" class="empty">記事が見つかりませんでした</td></tr>'
+    if rows:
+        rows_html = "\n".join(rows)
+        no_match_row = (
+            '<tr id="no-match-row" class="no-match-row" style="display:none;">'
+            '<td colspan="6" class="empty">条件に一致する記事がありません</td></tr>'
+        )
+    else:
+        rows_html = '<tr><td colspan="6" class="empty">記事が見つかりませんでした</td></tr>'
+        no_match_row = ""
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -255,29 +298,104 @@ def render_html(articles, generated_at):
     font-size: 0.75rem;
     white-space: nowrap;
   }}
+  .badge-region {{
+    background: #e6e0f8;
+    color: #4b3593;
+  }}
+  .badge-category {{
+    background: #fde8d2;
+    color: #a45b12;
+  }}
   .empty {{
     text-align: center;
     color: #999;
     padding: 40px;
+  }}
+  .filters {{
+    margin-bottom: 16px;
+  }}
+  .filter-row {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }}
+  .filter-btn {{
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #333;
+    border-radius: 16px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }}
+  .filter-btn:hover {{
+    border-color: #2f4858;
+  }}
+  .filter-btn.active {{
+    background: #2f4858;
+    border-color: #2f4858;
+    color: #fff;
   }}
 </style>
 </head>
 <body>
   <h1>沖縄・全国 移住定住ニュース</h1>
   <div class="meta">生成日時: {generated_at} ／ 記事数: {len(articles)}件</div>
+  {render_filter_tabs()}
   <table>
     <thead>
       <tr>
         <th>日付</th>
         <th>タイトル</th>
         <th>出典</th>
+        <th>地域</th>
+        <th>ジャンル</th>
         <th>検索元</th>
       </tr>
     </thead>
     <tbody>
       {rows_html}
+      {no_match_row}
     </tbody>
   </table>
+  <script>
+    (function () {{
+      var state = {{ region: "all", category: "all" }};
+      var rows = Array.prototype.slice.call(
+        document.querySelectorAll("table tbody tr[data-region]")
+      );
+      var noMatchRow = document.getElementById("no-match-row");
+
+      function applyFilters() {{
+        var visibleCount = 0;
+        rows.forEach(function (row) {{
+          var matchesRegion = state.region === "all" || row.dataset.region === state.region;
+          var matchesCategory = state.category === "all" || row.dataset.category === state.category;
+          var visible = matchesRegion && matchesCategory;
+          row.style.display = visible ? "" : "none";
+          if (visible) visibleCount++;
+        }});
+        if (noMatchRow) {{
+          noMatchRow.style.display = visibleCount === 0 ? "" : "none";
+        }}
+      }}
+
+      document.querySelectorAll(".filter-btn").forEach(function (btn) {{
+        btn.addEventListener("click", function () {{
+          var filterType = btn.dataset.filterType;
+          var filterValue = btn.dataset.filterValue;
+          state[filterType] = filterValue;
+          document
+            .querySelectorAll('.filter-btn[data-filter-type="' + filterType + '"]')
+            .forEach(function (b) {{
+              b.classList.toggle("active", b === btn);
+            }});
+          applyFilters();
+        }});
+      }});
+    }})();
+  </script>
 </body>
 </html>
 """
