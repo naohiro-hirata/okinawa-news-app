@@ -178,7 +178,7 @@ def sort_articles(articles):
 
 
 REGION_TABS = ["すべて", "沖縄", "全国"]
-CATEGORY_TABS = ["すべて", "移住定住", "地域おこし", "その他"]
+CATEGORY_TABS = ["すべて", "移住定住", "地域おこし", "人材確保", "その他"]
 
 
 def render_filter_tabs():
