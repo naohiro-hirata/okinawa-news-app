@@ -10,6 +10,7 @@ RSSフィードとGoogleニュース検索から自動収集し、HTMLファイ�
 """
 
 import html
+import json
 import urllib.parse
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -28,6 +29,7 @@ def load_config():
 
 DEFAULT_REGION = "全国"
 DEFAULT_CATEGORY = "その他"
+DEFAULT_SUB_CATEGORY = "その他"
 
 
 def build_google_news_url(keyword, google_news_cfg):
@@ -74,13 +76,27 @@ def match_keyword(text, keywords):
     return None
 
 
-def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None):
+def is_excluded_source(display_source, link, exclude_domains):
+    """display_source（出典表記）またはlinkに、除外対象ドメインが含まれるか判定する。
+    Googleニュース検索結果は出典表記にドメイン名がそのまま入ることが多い
+    （例: "mbp-japan.com"）ため、リンクのドメインだけでなく出典表記もチェックする。
+    """
+    if not exclude_domains:
+        return False
+    haystack = f"{display_source or ''} {link or ''}".lower()
+    return any(domain.lower() in haystack for domain in exclude_domains if domain)
+
+
+def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None,
+                global_exclude_domains=None):
     """RSS/Atomフィードを取得して記事リストを返す。
     keyword_filter にキーワード設定リストを渡すと、タイトル・概要が
     いずれかのキーワードに一致する記事だけを残し、一致したキーワードの
     region/categoryを記事に紐づける。
     keyword_cfg を渡した場合（Googleニュース検索時）は、そのキーワードの
     region/categoryをそのまま全記事に紐づける。
+    matched_cfg（キーワード設定）またはグローバル設定に exclude_domains が
+    指定されている場合、該当する出典の記事は除外する。
     """
     articles = []
     parsed = feedparser.parse(url)
@@ -103,6 +119,11 @@ def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None):
         entry_source = entry.get("source", {}).get("title") if entry.get("source") else None
         display_source = entry_source or source_name
 
+        exclude_domains = list(global_exclude_domains or [])
+        exclude_domains += (matched_cfg or {}).get("exclude_domains", []) or []
+        if is_excluded_source(display_source, link, exclude_domains):
+            continue
+
         articles.append({
             "title": title,
             "link": link,
@@ -111,6 +132,7 @@ def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None):
             "tag": matched_cfg["keyword"] if matched_cfg else source_name,
             "region": (matched_cfg or {}).get("region") or DEFAULT_REGION,
             "category": (matched_cfg or {}).get("category") or DEFAULT_CATEGORY,
+            "sub_category": (matched_cfg or {}).get("sub_category") or DEFAULT_SUB_CATEGORY,
         })
     return articles
 
@@ -118,13 +140,18 @@ def fetch_feed(url, source_name, keyword_cfg=None, keyword_filter=None):
 def collect_articles(config):
     all_articles = []
 
+    global_exclude_domains = config.get("exclude_domains", [])
+
     keywords = config.get("keywords", [])
     google_news_cfg = config.get("google_news", {})
     for keyword_cfg in keywords:
         keyword = keyword_cfg["keyword"]
         url = build_google_news_url(keyword, google_news_cfg)
         print(f"[Googleニュース検索] {keyword} を取得中...")
-        articles = fetch_feed(url, "Googleニュース", keyword_cfg=keyword_cfg)
+        articles = fetch_feed(
+            url, "Googleニュース", keyword_cfg=keyword_cfg,
+            global_exclude_domains=global_exclude_domains,
+        )
         print(f"  -> {len(articles)} 件取得")
         all_articles.extend(articles)
 
@@ -135,7 +162,10 @@ def collect_articles(config):
         if not url:
             continue
         print(f"[RSS] {name} を取得中...")
-        articles = fetch_feed(url, name, keyword_filter=keywords)
+        articles = fetch_feed(
+            url, name, keyword_filter=keywords,
+            global_exclude_domains=global_exclude_domains,
+        )
         print(f"  -> {len(articles)} 件取得（キーワード一致分のみ）")
         all_articles.extend(articles)
 
@@ -181,8 +211,31 @@ REGION_TABS = ["すべて", "沖縄", "全国"]
 CATEGORY_TABS = ["すべて", "移住定住", "地域おこし", "人材確保", "その他"]
 
 
-def render_filter_tabs():
-    def render_row(row_id, filter_type, values):
+def build_sub_category_map(articles):
+    """実際に収集された記事から、category -> sub_categoryタブ一覧のマップを組み立てる。
+    "all" キーには全カテゴリ共通（ジャンル未選択時）のsub_category一覧を格納する。
+    件数の多い順（同数の場合は名前順）に並べる。
+    """
+    counts_by_category = {}
+    counts_all = {}
+    for article in articles:
+        category = article["category"]
+        sub_category = article["sub_category"]
+        counts_by_category.setdefault(category, {})
+        counts_by_category[category][sub_category] = counts_by_category[category].get(sub_category, 0) + 1
+        counts_all[sub_category] = counts_all.get(sub_category, 0) + 1
+
+    def ordered_tabs(counts):
+        return ["すべて"] + sorted(counts, key=lambda name: (-counts[name], name))
+
+    sub_category_map = {"all": ordered_tabs(counts_all)}
+    for category, counts in counts_by_category.items():
+        sub_category_map[category] = ordered_tabs(counts)
+    return sub_category_map
+
+
+def render_filter_tabs(sub_category_map):
+    def render_row(row_id, filter_type, values, label):
         buttons = []
         for i, value in enumerate(values):
             filter_value = "all" if value == "すべて" else value
@@ -192,11 +245,19 @@ def render_filter_tabs():
                 f'data-filter-type="{filter_type}" data-filter-value="{html.escape(filter_value)}">'
                 f'{html.escape(value)}</button>'
             )
-        return f'<div class="filter-row" id="{row_id}">{"".join(buttons)}</div>'
+        return (
+            f'<div class="filter-group">'
+            f'<span class="filter-label">{html.escape(label)}</span>'
+            f'<div class="filter-row" id="{row_id}">{"".join(buttons)}</div>'
+            f'</div>'
+        )
 
-    region_row = render_row("region-filters", "region", REGION_TABS)
-    category_row = render_row("category-filters", "category", CATEGORY_TABS)
-    return f'<div class="filters">{region_row}{category_row}</div>'
+    region_row = render_row("region-filters", "region", REGION_TABS, "地域")
+    category_row = render_row("category-filters", "category", CATEGORY_TABS, "ジャンル")
+    sub_category_row = render_row(
+        "subcategory-filters", "subCategory", sub_category_map.get("all", ["すべて"]), "サブジャンル（検索元）"
+    )
+    return f'<div class="filters">{region_row}{category_row}{sub_category_row}</div>'
 
 
 def render_html(articles, generated_at):
@@ -209,8 +270,9 @@ def render_html(articles, generated_at):
         tag = html.escape(article["tag"])
         region = html.escape(article["region"])
         category = html.escape(article["category"])
+        sub_category = html.escape(article["sub_category"])
         rows.append(f"""
-        <tr data-region="{region}" data-category="{category}">
+        <tr data-region="{region}" data-category="{category}" data-sub-category="{sub_category}">
           <td class="date">{date_str}</td>
           <td class="title"><a href="{link}" target="_blank" rel="noopener noreferrer">{title}</a></td>
           <td class="source">{source}</td>
@@ -228,6 +290,9 @@ def render_html(articles, generated_at):
     else:
         rows_html = '<tr><td colspan="6" class="empty">記事が見つかりませんでした</td></tr>'
         no_match_row = ""
+
+    sub_category_map = build_sub_category_map(articles)
+    sub_category_map_json = json.dumps(sub_category_map, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
@@ -314,6 +379,15 @@ def render_html(articles, generated_at):
   .filters {{
     margin-bottom: 16px;
   }}
+  .filter-group {{
+    margin-bottom: 8px;
+  }}
+  .filter-label {{
+    display: block;
+    font-size: 0.75rem;
+    color: #777;
+    margin-bottom: 4px;
+  }}
   .filter-row {{
     display: flex;
     flex-wrap: wrap;
@@ -342,7 +416,7 @@ def render_html(articles, generated_at):
 <body>
   <h1>沖縄・全国 移住定住ニュース</h1>
   <div class="meta">生成日時: {generated_at} ／ 記事数: {len(articles)}件</div>
-  {render_filter_tabs()}
+  {render_filter_tabs(sub_category_map)}
   <table>
     <thead>
       <tr>
@@ -361,18 +435,21 @@ def render_html(articles, generated_at):
   </table>
   <script>
     (function () {{
-      var state = {{ region: "all", category: "all" }};
+      var SUB_CATEGORY_MAP = {sub_category_map_json};
+      var state = {{ region: "all", category: "all", subCategory: "all" }};
       var rows = Array.prototype.slice.call(
         document.querySelectorAll("table tbody tr[data-region]")
       );
       var noMatchRow = document.getElementById("no-match-row");
+      var subCategoryContainer = document.getElementById("subcategory-filters");
 
       function applyFilters() {{
         var visibleCount = 0;
         rows.forEach(function (row) {{
           var matchesRegion = state.region === "all" || row.dataset.region === state.region;
           var matchesCategory = state.category === "all" || row.dataset.category === state.category;
-          var visible = matchesRegion && matchesCategory;
+          var matchesSubCategory = state.subCategory === "all" || row.dataset.subCategory === state.subCategory;
+          var visible = matchesRegion && matchesCategory && matchesSubCategory;
           row.style.display = visible ? "" : "none";
           if (visible) visibleCount++;
         }});
@@ -381,18 +458,40 @@ def render_html(articles, generated_at):
         }}
       }}
 
-      document.querySelectorAll(".filter-btn").forEach(function (btn) {{
-        btn.addEventListener("click", function () {{
-          var filterType = btn.dataset.filterType;
-          var filterValue = btn.dataset.filterValue;
-          state[filterType] = filterValue;
-          document
-            .querySelectorAll('.filter-btn[data-filter-type="' + filterType + '"]')
-            .forEach(function (b) {{
-              b.classList.toggle("active", b === btn);
-            }});
-          applyFilters();
+      function renderSubCategoryTabs(category) {{
+        var values = SUB_CATEGORY_MAP[category] || ["すべて"];
+        subCategoryContainer.innerHTML = "";
+        values.forEach(function (value, i) {{
+          var filterValue = value === "すべて" ? "all" : value;
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "filter-btn" + (i === 0 ? " active" : "");
+          btn.dataset.filterType = "subCategory";
+          btn.dataset.filterValue = filterValue;
+          btn.textContent = value;
+          subCategoryContainer.appendChild(btn);
         }});
+        state.subCategory = "all";
+      }}
+
+      document.querySelector(".filters").addEventListener("click", function (event) {{
+        var btn = event.target.closest(".filter-btn");
+        if (!btn) return;
+
+        var filterType = btn.dataset.filterType;
+        var filterValue = btn.dataset.filterValue;
+        state[filterType] = filterValue;
+
+        var row = btn.closest(".filter-row");
+        Array.prototype.forEach.call(row.querySelectorAll(".filter-btn"), function (b) {{
+          b.classList.toggle("active", b === btn);
+        }});
+
+        if (filterType === "category") {{
+          renderSubCategoryTabs(filterValue);
+        }}
+
+        applyFilters();
       }});
     }})();
   </script>
